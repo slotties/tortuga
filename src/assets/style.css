@@ -1,0 +1,59 @@
+:root {
+    --color-gold: #EDA72E;
+    --color-gold-dark: #82560B;
+}
+@font-face {
+    font-family: "BlackPearl";
+    src: url("./Blackpearl-vPxA.ttf") format("truetype"),
+      url("./Blackpearl-vPxA.woff") format("woff"),
+      url("./Blackpearl-vPxA.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.navbar-light .navbar-brand {
+    font-family: "BlackPearl";
+    color: var(--color-gold);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--color-gold-dark);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: "BlackPearl";
+    color: var(--color-gold);
+}
+
+.navbar-light .navbar-toggler {
+    outline-color: var(--color-gold);
+}
+
+h5 {
+    font-family: "BlackPearl";
+    text-transform: uppercase;
+}
+
+.badge-primary {
+    background-color: var(--color-gold);
+}
+
+.listChar-enter,
+.alert-enter {
+    opacity: 0;
+}
+
+.listChar-enter-active,
+.alert-enter-active {
+    opacity: 1;
+    transition: opacity 250ms;
+}
+
+.listChar-exit,
+.alert-exit {
+    opacity: 1;
+}
+
+.listChar-exit-active,
+.alert-exit-active {
+    opacity: 0;
+    transition: opacity 250ms;
+}

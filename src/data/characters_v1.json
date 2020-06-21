@@ -1,0 +1,12 @@
+{
+    "schemaVersion": "1",
+    "chars": [
+        {
+            "id": "PIR014",
+            "name": "Regicide",
+            "factions": ["PIR"],
+            "costs": 90,
+            "type": "Anführer"
+        }
+    ]
+}
