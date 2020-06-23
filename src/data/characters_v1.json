@@ -1,12 +1,1 @@
-{
-    "schemaVersion": "1",
-    "chars": [
-        {
-            "id": "PIR014",
-            "name": "Regicide",
-            "factions": ["PIR"],
-            "costs": 90,
-            "type": "Anführer"
-        }
-    ]
-}
+{"schemaVersion":1,"chars":[{"id":"PIR014","name":"Blackbeard","factions":["PIR"],"costs":70,"type":"Spezialist","url":"https://www.freebooterminiatures.de/index.php/de/shop2/piraten/product/view/11/105"}]}

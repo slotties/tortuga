@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "node ./tools/create_char_json.js && react-scripts build"
   },
   "browserslist": {
     "production": [
