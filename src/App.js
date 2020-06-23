@@ -12,7 +12,7 @@ import ManageLists from './ManageLists';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename="/tortuga/build">
         <div className="container">
           <Navigation/>
 
