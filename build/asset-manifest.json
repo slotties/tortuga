@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "./static/css/main.263d238e.chunk.css",
+    "main.js": "./static/js/main.dd7f40ba.chunk.js",
+    "main.js.map": "./static/js/main.dd7f40ba.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.d221fa59.js",
+    "runtime-main.js.map": "./static/js/runtime-main.d221fa59.js.map",
+    "static/css/2.af3c1da9.chunk.css": "./static/css/2.af3c1da9.chunk.css",
+    "static/js/2.5e3e0edc.chunk.js": "./static/js/2.5e3e0edc.chunk.js",
+    "static/js/2.5e3e0edc.chunk.js.map": "./static/js/2.5e3e0edc.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.60991c80f3e145aecb661d72ed79fbab.js": "./precache-manifest.60991c80f3e145aecb661d72ed79fbab.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "./static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.263d238e.chunk.css.map": "./static/css/main.263d238e.chunk.css.map",
+    "static/js/2.5e3e0edc.chunk.js.LICENSE.txt": "./static/js/2.5e3e0edc.chunk.js.LICENSE.txt",
+    "static/media/style.css": "./static/media/Blackpearl-vPxA.e0002b97.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d221fa59.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.5e3e0edc.chunk.js",
+    "static/css/main.263d238e.chunk.css",
+    "static/js/main.dd7f40ba.chunk.js"
+  ]
+}
