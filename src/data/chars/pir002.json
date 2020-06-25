@@ -1,8 +1,10 @@
 {
-    "id": "PIR014",
+    "id": "PIR002",
     "name": "Blackbeard",
-    "factions": ["PIR"],
+    "factions": [
+        "PIR"
+    ],
     "costs": 70,
-    "type": "Spezialist",
+    "type": "S",
     "url": "https://www.freebooterminiatures.de/index.php/de/shop2/piraten/product/view/11/105"
 }
