@@ -22,5 +22,5 @@ fs.readdir(charsPath, (err, files) => {
 
     template.chars = characters;
 
-    fs.writeFileSync(TARGET_FILE, JSON.stringify(template));
+    fs.writeFileSync(TARGET_FILE, JSON.stringify(template, null, 4));
 });
