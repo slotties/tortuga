@@ -3,16 +3,35 @@ import { characterById, charactersByFaction } from './data/Characters';
 import validateList from './rules/validateList';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
+const TYPE_ORDER = 'ASG';
+
 class NewList extends Component {
     constructor(props) {
         super(props);
 
+        const characters = charactersByFaction('PIR')
+        characters.sort(this.sortByType);
+
         this.state = {
             chars: [],
-            allChars: charactersByFaction('PIR'),
+            allChars: characters,
             errors: [],
             errorsVisible: false
         };
+    }
+
+    sortByType(char1, char2) {
+        const type1 = char1.type;
+        const type2 = char2.type;
+
+        if (type1 === type2) {
+            return char1.name.localeCompare(char2.name);
+        }
+
+        const order1 = TYPE_ORDER.indexOf(type1);
+        const order2 = TYPE_ORDER.indexOf(type2);
+
+        return order1 < order2 ? -1 : 1;
     }
 
     addChar(id) {
@@ -43,11 +62,25 @@ class NewList extends Component {
         })
     }
 
+    typeNameOf(type) {
+        switch (type) {
+            case 'A':
+                return 'Anführer';
+            case 'S':
+                return 'Spezialist';
+            case 'G':
+                return 'Gefolge';
+            default:
+                return 'Unbekannt';
+        }
+    }
+
     render() {
         const errorsVisible = this.state.errorsVisible;
 
         // TODO: sub-komponenten auslagern
         // TODO: meldung wenn keine charaktere ausgewählt sind
+        // TODO: farblegende für typen
 
         return (
             <div>
@@ -77,7 +110,8 @@ class NewList extends Component {
                                     {this.state.chars.map((value, index) =>
                                         <CSSTransition key={index} timeout={250} classNames="listChar">
                                             <li className="list-group-item d-flex justify-content-between align-items-center">
-                                                <span className="mr-auto">{value.name}</span>                                    
+                                                <span className="mr-auto">{value.name}</span>                            
+                                                <span className={`badge badge-primary badge-pill t-type-${value.type.toLowerCase()} m-2`}>{this.typeNameOf(value.type)}</span>
                                                 <span className="badge badge-primary badge-pill m-2">{value.costs}</span>
                                                 <button type="button" className="btn btn-danger" onClick={this.removeChar.bind(this, index)}>X</button>
                                             </li>
@@ -97,11 +131,9 @@ class NewList extends Component {
                     <div className="list-group">
                             {this.state.allChars.map((value) =>
                                 <a key={value.id} href="#" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick={this.addChar.bind(this, value.id)}>
-                                    {value.name}
-
-                                    <span className="badge badge-primary badge-pill">
-                                        {value.costs}
-                                    </span>
+                                    <span className="mr-auto">{value.name}</span>   
+                                    <span className={`badge badge-primary badge-pill t-type-${value.type.toLowerCase()} m-2`}>{this.typeNameOf(value.type)}</span>
+                                    <span className="badge badge-primary badge-pill m-2">{value.costs}</span>
                                 </a>
                             )}
                         </div>

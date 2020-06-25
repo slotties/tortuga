@@ -1,6 +1,9 @@
 :root {
     --color-gold: #EDA72E;
     --color-gold-dark: #82560B;
+    --color-type-a: #EDA72E;
+    --color-type-s: #B6790F;
+    --color-type-g: #684508;
 }
 @font-face {
     font-family: "BlackPearl";
@@ -32,8 +35,16 @@ h5 {
     text-transform: uppercase;
 }
 
-.badge-primary {
-    background-color: var(--color-gold);
+.badge-primary.t-type-a {
+    background-color: var(--color-type-a);
+}
+
+.badge-primary.t-type-s {
+    background-color: var(--color-type-s);
+}
+
+.badge-primary.t-type-g {
+    background-color: var(--color-type-g);
 }
 
 .listChar-enter,
