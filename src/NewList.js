@@ -1,26 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { characterById, charactersByFaction } from './data/Characters';
 import validateList from './rules/validateList';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { useLocation, useParams } from 'react-router';
 
 const TYPE_ORDER = 'ASG';
 
-class NewList extends Component {
-    constructor(props) {
-        super(props);
-
-        const characters = charactersByFaction('PIR')
-        characters.sort(this.sortByType);
-
-        this.state = {
-            chars: [],
-            allChars: characters,
-            errors: [],
-            errorsVisible: false
-        };
-    }
-
-    sortByType(char1, char2) {
+function NewList() {
+    const sortByType = (char1, char2) => {
         const type1 = char1.type;
         const type2 = char2.type;
 
@@ -32,37 +19,32 @@ class NewList extends Component {
         const order2 = TYPE_ORDER.indexOf(type2);
 
         return order1 < order2 ? -1 : 1;
-    }
+    };
 
-    addChar(id) {
+    const addChar = (id) => {
         const item = characterById(id)
 
-        // FIXME: checken, ob das state-handling so richtig ist. wirkt komisch direkt auf this.state zuzugreifen
-        const updatedChars = [...this.state.chars, item ];
+        const updatedChars = [...chars, item];
         const errors = validateList(updatedChars);
 
-        this.setState({
-            chars: updatedChars,
-            errors: errors,
-            errorsVisible: (errors.length > 0)
-        })
-    }
+        setChars(updatedChars);
+        setErrors(errors);
+        setErrorsVisible(errors.length > 0);
+    };
 
-    removeChar(removedIndex) {
-        const updatedChars = this.state.chars.filter((_, index) => {
+    const removeChar = (removedIndex) => {
+        const updatedChars = chars.filter((_, index) => {
             return index !== removedIndex;
         })
 
         const errors = validateList(updatedChars);
-        
-        this.setState({
-            chars: updatedChars,
-            errors: errors,
-            errorsVisible: (errors.length > 0)
-        })
-    }
 
-    typeNameOf(type) {
+        setChars(updatedChars);
+        setErrors(errors);
+        setErrorsVisible(errors.length > 0);
+    };
+
+    const typeNameOf = (type) => {
         switch (type) {
             case 'A':
                 return 'Anführer';
@@ -73,79 +55,86 @@ class NewList extends Component {
             default:
                 return 'Unbekannt';
         }
-    }
+    };
 
-    typeClassName(type) {
+    const typeClassName = (type) => {
         return type ? ('t-type-' + type.toLowerCase()) : '';
-    }
+    };
 
-    render() {
-        const errorsVisible = this.state.errorsVisible;
+    let { faction } = useParams();
+    // TODO: handle faction = null
 
-        // TODO: sub-komponenten auslagern
-        // TODO: meldung wenn keine charaktere ausgewählt sind
-        // TODO: farblegende für typen
+    const characters = charactersByFaction(faction)
+    characters.sort(sortByType);
 
-        return (
-            <div>
+    const [chars, setChars] = useState([]);
+    const [allChars, setAllChars] = useState(characters);
+    const [errors, setErrors] = useState([]);
+    const [errorsVisible, setErrorsVisible] = useState(false);
+
+    // TODO: sub-komponenten auslagern
+    // TODO: meldung wenn keine charaktere ausgewählt sind
+    // TODO: farblegende für typen
+
+    return (
+        <div>
             <div className="row">
                 <div className="col">
                     <h5 className="user-select-none">Ausgewählte Charaktere</h5>
                 </div>
             </div>
-                <CSSTransition in={errorsVisible} unmountOnExit timeout={250} classNames="alert">
-                    <div className="row">
-                        <div className="col">
-                            <div className="alert alert-danger" role="alert">
-                                Fehler:
-                                <ul>
-                                    {this.state.errors.map((error, index) => 
-                                        <li key={index}>{ error }</li>
-                                    )}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </CSSTransition>
+            <CSSTransition in={errorsVisible} unmountOnExit timeout={250} classNames="alert">
                 <div className="row">
                     <div className="col">
-                            <ul className="list-group">
-                                <TransitionGroup>
-                                    {this.state.chars.map((value, index) =>
-                                        <CSSTransition key={index} timeout={250} classNames="listChar">
-                                            <li className="list-group-item d-flex justify-content-between align-items-center">
-                                                <span className="mr-auto">{value.name}</span>                            
-                                                <span className={`badge badge-primary badge-pill ${this.typeClassName(value.type)} m-2`}>{this.typeNameOf(value.type)}</span>
-                                                <span className="badge badge-primary badge-pill m-2">{value.costs}</span>
-                                                <button type="button" className="btn btn-danger" onClick={this.removeChar.bind(this, index)}>X</button>
-                                            </li>
-                                        </CSSTransition>
-                                    )}
-                                </TransitionGroup>
+                        <div className="alert alert-danger" role="alert">
+                            Fehler:
+                            <ul>
+                                {errors.map((error, index) =>
+                                    <li key={index}>{error}</li>
+                                )}
                             </ul>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <h5 className="user-select-none">Charakter hinzufügen</h5>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                    <div className="list-group">
-                            {this.state.allChars.map((value) =>
-                                <a key={value.id} href="#" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick={this.addChar.bind(this, value.id)}>
-                                    <span className="mr-auto">{value.name}</span>   
-                                    <span className={`badge badge-primary badge-pill ${this.typeClassName(value.type)} m-2`}>{this.typeNameOf(value.type)}</span>
-                                    <span className="badge badge-primary badge-pill m-2">{value.costs}</span>
-                                </a>
-                            )}
                         </div>
+                    </div>
+                </div>
+            </CSSTransition>
+            <div className="row">
+                <div className="col">
+                    <ul className="list-group">
+                        <TransitionGroup>
+                            {chars.map((value, index) =>
+                                <CSSTransition key={index} timeout={250} classNames="listChar">
+                                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                                        <span className="mr-auto">{value.name}</span>
+                                        <span className={`badge badge-primary badge-pill ${typeClassName(value.type)} m-2`}>{typeNameOf(value.type)}</span>
+                                        <span className="badge badge-primary badge-pill m-2">{value.costs}</span>
+                                        <button type="button" className="btn btn-danger" onClick={removeChar.bind(this, index)}>X</button>
+                                    </li>
+                                </CSSTransition>
+                            )}
+                        </TransitionGroup>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
+                    <h5 className="user-select-none">Charakter hinzufügen</h5>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
+                    <div className="list-group">
+                        {allChars.map((value) =>
+                            <a key={value.id} href="#" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick={addChar.bind(this, value.id)}>
+                                <span className="mr-auto">{value.name}</span>
+                                <span className={`badge badge-primary badge-pill ${typeClassName(value.type)} m-2`}>{typeNameOf(value.type)}</span>
+                                <span className="badge badge-primary badge-pill m-2">{value.costs}</span>
+                            </a>
+                        )}
                     </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default NewList;

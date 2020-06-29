@@ -13,7 +13,7 @@ class Navigation extends Component {
           <div className="collapse navbar-collapse" id="headerNavigation">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/new" className="nav-link user-select-none">Neue Liste anlegen</Link>
+                <Link to="/factionChoice" className="nav-link user-select-none">Neue Liste anlegen</Link>
               </li>
               <li className="nav-item">
                 <Link to="/lists" className="nav-link user-select-none">Listen verwalten</Link>

@@ -8,29 +8,31 @@ import {
 } from "react-router-dom";
 import NewList from './NewList';
 import ManageLists from './ManageLists';
+import FactionChoice from './FactionChoice';
 
-class App extends Component {
-  render() {
-    return (
-      <Router basename="/tortuga/build">
-        <div className="container">
-          <Navigation/>
+function App() {
+  return (
+    <Router basename="/tortuga/build">
+      <div className="container">
+        <Navigation />
 
-          <Switch>
-            <Route path="/new">
-              <NewList/>
-            </Route>
-            <Route path="/lists">
-              <ManageLists/>
-            </Route>
-            <Route path="/">
-              <Welcome/>
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+        <Switch>
+          <Route path="/factionChoice">
+            <FactionChoice />
+          </Route>
+          <Route path="/new/:faction">
+            <NewList />
+          </Route>
+          <Route path="/lists">
+            <ManageLists />
+          </Route>
+          <Route path="/">
+            <Welcome />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
