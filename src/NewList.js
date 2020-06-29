@@ -75,6 +75,10 @@ class NewList extends Component {
         }
     }
 
+    typeClassName(type) {
+        return type ? ('t-type-' + type.toLowerCase()) : '';
+    }
+
     render() {
         const errorsVisible = this.state.errorsVisible;
 
@@ -111,7 +115,7 @@ class NewList extends Component {
                                         <CSSTransition key={index} timeout={250} classNames="listChar">
                                             <li className="list-group-item d-flex justify-content-between align-items-center">
                                                 <span className="mr-auto">{value.name}</span>                            
-                                                <span className={`badge badge-primary badge-pill t-type-${value.type.toLowerCase()} m-2`}>{this.typeNameOf(value.type)}</span>
+                                                <span className={`badge badge-primary badge-pill ${this.typeClassName(value.type)} m-2`}>{this.typeNameOf(value.type)}</span>
                                                 <span className="badge badge-primary badge-pill m-2">{value.costs}</span>
                                                 <button type="button" className="btn btn-danger" onClick={this.removeChar.bind(this, index)}>X</button>
                                             </li>
@@ -132,7 +136,7 @@ class NewList extends Component {
                             {this.state.allChars.map((value) =>
                                 <a key={value.id} href="#" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick={this.addChar.bind(this, value.id)}>
                                     <span className="mr-auto">{value.name}</span>   
-                                    <span className={`badge badge-primary badge-pill t-type-${value.type.toLowerCase()} m-2`}>{this.typeNameOf(value.type)}</span>
+                                    <span className={`badge badge-primary badge-pill ${this.typeClassName(value.type)} m-2`}>{this.typeNameOf(value.type)}</span>
                                     <span className="badge badge-primary badge-pill m-2">{value.costs}</span>
                                 </a>
                             )}
