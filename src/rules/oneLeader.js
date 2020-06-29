@@ -1,5 +1,3 @@
-import validateList from "./validateList";
-
 function oneLeader(list) {
     const leaders = list.filter((character) => character.type === 'A');
 
