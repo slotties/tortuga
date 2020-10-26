@@ -44,6 +44,15 @@ function NewList() {
         setErrorsVisible(errors.length > 0);
     };
 
+    const totalCostsOf = (chars) => {
+        let total = 0
+        for (let i = 0; i < chars.length; i++) {
+            total += chars[i].costs
+        }
+
+        return total
+    }
+
     const typeNameOf = (type) => {
         switch (type) {
             case 'A':
@@ -82,16 +91,6 @@ function NewList() {
                 </div>
             </div>
 
-        <CSSTransition in={chars.length === 0} unmountOnExit timeout={250} classNames="alert">
-            <div className="row">
-                <div className="col">
-                    <div className="alert alert-info" role="alert">
-                        Du hast noch keine Charaktere ausgewählt.
-                    </div>
-                </div>
-            </div>
-        </CSSTransition>
-
             <CSSTransition in={errorsVisible} unmountOnExit timeout={250} classNames="alert">
                 <div className="row">
                     <div className="col">
@@ -121,6 +120,9 @@ function NewList() {
                                     </li>
                                 </CSSTransition>
                             )}
+                            <li className="list-group-item d-flex justify-content-end bg-info text-light">
+                                <span className="mr-5">Gesamt: { totalCostsOf(chars) }</span>                                
+                            </li>
                         </TransitionGroup>
                     </ul>
                 </div>
