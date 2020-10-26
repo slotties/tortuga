@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { characterById, charactersByFaction } from './data/Characters';
 import validateList from './rules/validateList';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 
 const TYPE_ORDER = 'ASG';
+
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
 function NewList() {
     const sortByType = (char1, char2) => {
@@ -20,6 +24,15 @@ function NewList() {
 
         return order1 < order2 ? -1 : 1;
     };
+
+    const replaceChars = (ids) => {
+        const items = ids.map(characterById).filter(c => !!c);
+        const errors = validateList(items);
+
+        setChars(items);
+        setErrors(errors);
+        setErrorsVisible(errors.length > 0);
+    }
 
     const addChar = (id) => {
         const item = characterById(id)
@@ -81,6 +94,13 @@ function NewList() {
     const [errors, setErrors] = useState([]);
     const [errorsVisible, setErrorsVisible] = useState(false);
 
+    let initialCharIds = useQuery().get('chars');
+    useEffect(() => {
+        if (initialCharIds) {
+            replaceChars(initialCharIds.split(','));
+        }
+    }, [ initialCharIds ]);
+    
     // TODO: sub-komponenten auslagern
 
     return (
@@ -120,9 +140,11 @@ function NewList() {
                                     </li>
                                 </CSSTransition>
                             )}
-                            <li className="list-group-item d-flex justify-content-end bg-info text-light">
-                                <span className="mr-5">Gesamt: { totalCostsOf(chars) }</span>                                
-                            </li>
+                            <CSSTransition key="total" timeout={250} classNames="listChar">
+                                <li className="list-group-item d-flex justify-content-end bg-info text-light">
+                                    <span className="mr-5">Gesamt: { totalCostsOf(chars) }</span>                                
+                                </li>
+                            </CSSTransition>
                         </TransitionGroup>
                     </ul>
                 </div>
