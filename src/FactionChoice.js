@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { Link, Router } from 'react-router-dom';
-
-const TYPE_ORDER = 'ASG';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function FactionChoice() {
     return (

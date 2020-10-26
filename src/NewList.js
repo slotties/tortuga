@@ -1,8 +1,8 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { characterById, charactersByFaction } from './data/Characters';
 import validateList from './rules/validateList';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { useLocation, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 const TYPE_ORDER = 'ASG';
 
@@ -68,7 +68,7 @@ function NewList() {
     characters.sort(sortByType);
 
     const [chars, setChars] = useState([]);
-    const [allChars, setAllChars] = useState(characters);
+    const [allChars] = useState(characters);
     const [errors, setErrors] = useState([]);
     const [errorsVisible, setErrorsVisible] = useState(false);
 
