@@ -73,8 +73,6 @@ function NewList() {
     const [errorsVisible, setErrorsVisible] = useState(false);
 
     // TODO: sub-komponenten auslagern
-    // TODO: meldung wenn keine charaktere ausgewählt sind
-    // TODO: farblegende für typen
 
     return (
         <div>
@@ -83,6 +81,17 @@ function NewList() {
                     <h5 className="user-select-none">Ausgewählte Charaktere</h5>
                 </div>
             </div>
+
+        <CSSTransition in={chars.length === 0} unmountOnExit timeout={250} classNames="alert">
+            <div className="row">
+                <div className="col">
+                    <div className="alert alert-info" role="alert">
+                        Du hast noch keine Charaktere ausgewählt.
+                    </div>
+                </div>
+            </div>
+        </CSSTransition>
+
             <CSSTransition in={errorsVisible} unmountOnExit timeout={250} classNames="alert">
                 <div className="row">
                     <div className="col">
@@ -97,7 +106,8 @@ function NewList() {
                     </div>
                 </div>
             </CSSTransition>
-            <div className="row">
+
+            <div className="row mb-4">
                 <div className="col">
                     <ul className="list-group">
                         <TransitionGroup>
@@ -115,11 +125,13 @@ function NewList() {
                     </ul>
                 </div>
             </div>
+
             <div className="row">
                 <div className="col">
                     <h5 className="user-select-none">Charakter hinzufügen</h5>
                 </div>
             </div>
+
             <div className="row">
                 <div className="col">
                     <div className="list-group">
