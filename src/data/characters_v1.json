@@ -832,6 +832,39 @@
             "url": "https://www.freebooterminiatures.de/index.php/de/shop2/debonn/product/view/32/578"
         },
         {
+            "id": "DEB028",
+            "name": "Taurekareka",
+            "factions": [
+                "DEB",
+                "AMA"
+            ],
+            "costs": 65,
+            "type": "S",
+            "url": "https://www.freebooterminiatures.de/index.php/de/shop2/amazonen/product/view/5/582"
+        },
+        {
+            "id": "DEB029",
+            "name": "Turituri",
+            "factions": [
+                "DEB",
+                "AMA"
+            ],
+            "costs": 65,
+            "type": "S",
+            "url": "https://www.freebooterminiatures.de/index.php/de/shop2/amazonen/product/view/5/583"
+        },
+        {
+            "id": "DEB030",
+            "name": "Mylady",
+            "factions": [
+                "DEB",
+                "AMA"
+            ],
+            "costs": 70,
+            "type": "S",
+            "url": "https://www.freebooterminiatures.de/index.php/de/shop2/debonn/product/view/32/606"
+        },
+        {
             "id": "GOB004",
             "name": "Revlugg",
             "factions": [
@@ -1482,6 +1515,26 @@
             "url": "https://www.freebooterminiatures.de/index.php/de/shop2/imperiale-armada/product/view/13/553"
         },
         {
+            "id": "IMP036",
+            "name": "Hugo & Gertrude",
+            "factions": [
+                "IMP"
+            ],
+            "costs": 105,
+            "type": "S",
+            "url": "https://www.freebooterminiatures.de/index.php/de/shop2/imperiale-armada/product/view/13/581"
+        },
+        {
+            "id": "IMP036_single",
+            "name": "Hugo",
+            "factions": [
+                "IMP"
+            ],
+            "costs": 55,
+            "type": "S",
+            "url": "https://www.freebooterminiatures.de/index.php/de/shop2/imperiale-armada/product/view/13/581"
+        },
+        {
             "id": "LIM016",
             "name": "Angriff der Zombie-Oktopusse",
             "factions": [
@@ -1798,6 +1851,17 @@
                 "MYS"
             ],
             "costs": 65,
+            "type": "S",
+            "url": "https://www.freebooterminiatures.de/index.php/de/shop2/bruderschaft/product/view/7/558"
+        },
+        {
+            "id": "MYS029",
+            "name": "Belle Satine",
+            "factions": [
+                "MYS",
+                "SOL"
+            ],
+            "costs": 75,
             "type": "S",
             "url": "https://www.freebooterminiatures.de/index.php/de/shop2/bruderschaft/product/view/7/558"
         },
@@ -2120,6 +2184,16 @@
             "costs": 50,
             "type": "S",
             "url": "https://www.freebooterminiatures.de/index.php/de/shop2/piraten/product/view/11/516"
+        },
+        {
+            "id": "PIR036",
+            "name": "Arrr'chibald",
+            "factions": [
+                "PIR"
+            ],
+            "costs": 75,
+            "type": "S",
+            "url": "https://www.freebooterminiatures.de/index.php/de/shop2/piraten/product/view/11/605"
         },
         {
             "id": "SOL000-A",
